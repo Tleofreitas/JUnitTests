@@ -35,8 +35,7 @@ public class Account {
 		if(amount > balance) {
 			throw new IllegalArgumentException();
 		}
-		amount -= amount*DEPOSIT_FEE_PERCENTAGE;
-		balance += amount;	
+		balance -= amount;	
 	}
 	
 	public double fullWithdraw() {

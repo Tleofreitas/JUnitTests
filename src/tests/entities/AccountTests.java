@@ -60,4 +60,30 @@ public class AccountTests {
 		Assertions.assertTrue(expectedValue == acc.getBalance());
 		Assertions.assertTrue(result == initialBalance);
 	}
+	
+	// Saque com valor MENOR que o saldo
+	@Test
+	public void withdrawShouldDecreaseBalanceWhenSufficientBalance() {
+		// Arrange
+		Account acc = AccountFactory.creatAccount(800.0);
+		
+		// Act
+		acc.withdraw(500.0);		
+		
+		// Assertions
+		Assertions.assertEquals(300.0, acc.getBalance());
+	}
+	
+	// Saque com valor MAIOR que o saldo
+	@Test
+	public void withdrawShouldThrowExceptionWhenInsufficientBalance() {
+		// Assertions
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			// Arrange
+			Account acc = AccountFactory.creatAccount(800.0);
+					
+			// Act
+			acc.withdraw(801.0);
+		});
+	}
 }
